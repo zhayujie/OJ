@@ -7,23 +7,16 @@ class Solution {
     int lengthOfLongestSubstring(string s) {
         int count = 0;
         int start = 0;
-        int end = 0;
       
-        for (int i = 1; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
           for (int j = start; j < i; j++) {
             if (s[i] == s[j]) {
-              int currentCount = end - start + 1;
-              if (currentCount > count) {
-                count = currentCount;
-              }
               start = j + 1;
               break;
             }
           }
-          end = i;
+          count = max(i - start + 1, count);
         }
-        int lastCount = s.length() - start;
-        count = max(lastCount, count);
         return count;
     }
 };

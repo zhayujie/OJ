@@ -1,35 +1,30 @@
 #include <iostream>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 class Solution {
   public:
     int lengthOfLongestSubstring(string s) {
-        int count = 0;
-        int start = 0;
-        int end = 0;
-      
-        for (int i = 1; i < s.length(); i++) {
-          for (int j = start; j < i; j++) {
-            if (s[i] == s[j]) {
-              int currentCount = end - start + 1;
-              if (currentCount > count) {
-                count = currentCount;
-              }
-              start = j + 1;
-              break;
-            }
-          }
-          end = i;
+      int count = 0;
+      int start = 0;
+
+      vector<int> pos(128, -1);
+      for (int i = 0; i < s.length(); i++) {
+        if (pos[s[i]] >= start) {
+          start = pos[s[i]] + 1;
         }
-        int lastCount = s.length() - start;
-        count = max(lastCount, count);
-        return count;
+        count = max(count, i - start + 1);
+        // 更新该字符最后一次出现的位置
+        pos[s[i]] = i;
+      }
+
+      return count;
     }
 };
 
 int main(void) {
-  string s = "abcabcbb";
+  string s = "cdd";
   Solution soulution;
 
   cout << soulution.lengthOfLongestSubstring(s) << endl; 
