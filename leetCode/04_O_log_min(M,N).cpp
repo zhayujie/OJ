@@ -60,5 +60,5 @@ int main(void) {
   vector<int> nums2(a2, a2 + 1);
   cout << soulution.findMedianSortedArrays(nums1, nums2) << endl; 
 
-  return 0;
+  return 0;   
 }
