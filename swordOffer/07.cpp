@@ -3,34 +3,37 @@
 #include <vector>
 using namespace std;
 
-struct ListNode {
+struct TreeNode {
   int val;
-  struct ListNode *next;
-  ListNode(int x) :
-    val(x), next(NULL) {
-  }
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
 class Solution {
 public:
-    vector<int> printListFromTailToHead(ListNode* head) {
-      vector<int> vec;
+    TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
+      return constructTree(pre, 0, pre.size()-1, vin, 0, vin.size()-1);
+    }
 
-      while (head != NULL) {
-        vec.push_back(head->val);
-        head = head->next;
+    TreeNode* constructTree(vector<int> pre, int preBeg, int preEnd, vector<int> vin, int vinBeg, int vinEnd) {
+      if (preEnd - preBeg < 0)   return NULL;
+      TreeNode *node = new TreeNode(pre[preBeg]);
+      for (int i = vinBeg; i <= vinEnd; i++) {
+        if (pre[preBeg] == vin[i]) {
+          node->left = constructTree(pre, preBeg+1, preBeg+i-vinBeg, vin, vinBeg, i-1);
+          node->right = constructTree(pre, preBeg+i-vinBeg+1, preEnd, vin, i+1, vinEnd);
+        }
       }
-      reverse(vec.begin(), vec.end());
-      return vec;
+
+      return node;
     }
 };
 
 int main(void) {
   Solution soulution;
 
-  ListNode head(6);
-
-  soulution.printListFromTailToHead(&head);
+  TreeNode root(3);
 
   return 0;
 }
