@@ -4,29 +4,30 @@ using namespace std;
 
 class Solution {
 public:
-		int minVal = INT32_MAX;
-		stack<int> valStack;
-		stack<int> minStack;
+    int minVal = INT32_MAX;
+    stack<int> valStack;
+    stack<int> minStack;
+    
     void push(int value) {
-			valStack.push(value);
-			minStack.push(minVal);	// 记录旧的最小值
-      if (value < minVal) {
-				minVal = value;
-			}
+        valStack.push(value);
+        minStack.push(minVal);   // 记录旧的最小值
+        if (value < minVal) {
+            minVal = value;
+        }
     }
     void pop() {
-			valStack.pop();
-			minVal = minStack.top();
-			minStack.pop();
+        valStack.pop();
+        minVal = minStack.top();
+        minStack.pop();
     }
     int top() {
-      return valStack.top();
+        return valStack.top();
     }
     int min() {
-      return minVal;
+        return minVal;
     }
 };
 int main(void) {
-  Solution soulution;
-  return 0;
+    Solution soulution;
+    return 0;
 }
