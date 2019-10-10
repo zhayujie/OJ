@@ -1,4 +1,7 @@
-class ApperOnce {
+import sun.jvm.hotspot.jdi.IntegerTypeImpl;
+
+class AppearOnce {
+    public static final int[] a = new int[]{1,2};
     public void FindNumsAppearOnce(int [] array, int num1[] , int num2[]) {
         int num = 0;
 
@@ -42,7 +45,8 @@ class ApperOnce {
         int[] array = {2,2,1,3};
         int[] nums1 = {0};
         int[] nums2 = {1};
-        new ApperOnce().FindNumsAppearOnce(array, nums1, nums2);
+        new AppearOnce().FindNumsAppearOnce(array, nums1, nums2);
         System.out.println(nums1[0] + " " + nums2[0]);
+        AppearOnce ap = new AppearOnce();
     }
 }
