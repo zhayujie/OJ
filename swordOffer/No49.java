@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -52,7 +54,17 @@ class UglyNumber {
     }
 
     public static void main(String[] args) {
-        System.out.println(new UglyNumber().GetUglyNumber_Fast(1500));
+//        System.out.println(new UglyNumber().GetUglyNumber_Fast(1500));
+        int[][] a = new int[10][100];
+        int[][] b = new int[100][10];
+
+
+        System.out.println(ObjectSizeCalculator.getObjectSize(a));
+        System.out.println(ObjectSizeCalculator.getObjectSize(b));
+
+        int[] c = new int[0];
+        System.out.println(ObjectSizeCalculator.getObjectSize(c));
+
     }
 }
 
