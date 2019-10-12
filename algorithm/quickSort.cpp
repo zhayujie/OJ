@@ -11,7 +11,7 @@ void qsort(int* a, int lo, int hi) {
         while (a[++i] < v) {
             if (i >= hi)    break;
         }
-        // 从右往左找到第一个大于等于v的
+        // 从右往左找到第一个小于等于v的
         while (a[--j] > v) {
             continue;
         }

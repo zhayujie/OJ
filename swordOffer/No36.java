@@ -1,13 +1,4 @@
-class TreeNode {
-    int val = 0;
-    TreeNode left = null;
-    TreeNode right = null;
-    public TreeNode(int val) {
-        this.val = val;
-    }
-}
-
- class TreeAndList {
+class TreeAndList {
     private TreeNode lastNode = null;
     public TreeNode Convert(TreeNode pRootOfTree) {
         if (pRootOfTree == null)    return null;

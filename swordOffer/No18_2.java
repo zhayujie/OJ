@@ -1,3 +1,8 @@
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 class DeleteDupNode {
     static class ListNode {
         int val;
@@ -9,24 +14,24 @@ class DeleteDupNode {
 
     public ListNode deleteDuplication(ListNode pHead)
     {
-        if (pHead == null)  return null;
-        int cur = pHead.val;
-        ListNode fast = pHead, slow = pHead;
-        while (true) {
-            int count = 0;
-            while (fast != null && fast.val == cur) {
-                fast = fast.next;
-                count++;
-            }
-            if (count > 1) {
-                if (pHead.val == cur) {
-                    pHead = fast;
+//        if (pHead == null || pHead.next == null)  return pHead;
+        ListNode tHead = new ListNode(-1);
+        tHead.next = pHead;
+        ListNode fast = pHead, slow = tHead;
+        while (fast != null) {
+            if (fast.next != null && fast.next.val == fast.val) {
+                while (fast.next != null && fast.next.val == fast.val) {
+                    fast = fast.next;
                 }
+                fast = fast.next;
                 slow.next = fast;
-                slow = fast;
-                if (fast == null) return pHead;
-                cur = fast.val;
+            } else {
+                slow = slow.next;
+                fast = fast.next;
             }
         }
+        LinkedList<Integer> l = new LinkedList<>();
+
+        return tHead.next;
     }
 }
