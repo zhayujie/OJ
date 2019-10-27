@@ -1,5 +1,5 @@
 class NodeLoopEntry {
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next = null;
         ListNode(int val) {

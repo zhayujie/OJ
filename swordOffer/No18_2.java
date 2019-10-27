@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 class DeleteDupNode {
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next = null;
         ListNode(int val) {
