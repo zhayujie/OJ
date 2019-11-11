@@ -1,4 +1,4 @@
-class MergeSort {
+class MergeSortSolution {
     public int InversePairs(int [] array) {
         if (array.length == 0)  return 0;
         int[] aux = new int[array.length];
@@ -36,7 +36,7 @@ class MergeSort {
     }
     public static void main(String[] args) {
         int[] nums = {1,2,3,4,5,6,7,0};
-        System.out.println(new MergeSort().InversePairs(nums));
+        System.out.println(new MergeSortSolution().InversePairs(nums));
     }
 
 }
