@@ -19,7 +19,7 @@ class Solution143 {
         }
         int i = 0;
         int j = nodes.size() - 1;
-        // 2.双指针指向首位依次链接
+        // 2.双指针指向首尾依次链接
         while (i < j) {
             nodes.get(i).next = nodes.get(j);
             i++;
