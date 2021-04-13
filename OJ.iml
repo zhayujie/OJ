@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/algorithm" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/swordOffer" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/exam" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tpc" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
