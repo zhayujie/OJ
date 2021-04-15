@@ -3,32 +3,26 @@ import java.util.List;
 
 /**
  * @author yujiezha
- * @description 括号生成
+ * @description 合并两个有序链表
  * @date 2020/12/16
  */
 public class No021 {
-    public List<String> generateParenthesis(int n) {
-        List<String> res = new ArrayList<>();
-        generateParenthesis(res, "", n, n);
-        return res;
-    }
-
-    private void generateParenthesis(List<String> res, String str, int i, int j) {
-        if (i == 0 && j == 0) {
-            res.add(str);
-            return;
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
         }
-        if (i == 0) {
-            generateParenthesis(res, str + ")", i, j - 1);
-        } else if (i == j) {
-            generateParenthesis(res, str + "(", i-1, j);
+        if (l2 == null) {
+            return l1;
+        }
+        if (l1.val < l2.val) {
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
         } else {
-            generateParenthesis(res, str + ")", i, j - 1);
-            generateParenthesis(res, str + "(", i-1, j);
+            l2.next =  mergeTwoLists(l1, l2.next);
+            return l2;
         }
     }
 
     public static void main(String args[]) {
-        System.out.println(new No021().generateParenthesis(3));
     }
 }
