@@ -1,4 +1,5 @@
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -7,26 +8,28 @@ import java.util.Scanner;
  * @date 2021/4/13
  */
 public class TpcTest1 {
-    public static boolean perfectSequence(int[] arr) {
-        int numZero = 0;
-        int numPos = 0;
-        int numNag = 0;
-        for (int num : arr) {
-            if (num == 0) {
-                numZero++;
-            } else if (num < 0) {
-                numNag++;
-            } else {
-                numPos++;
+    public static boolean isSelect(int num, Map<Integer, Boolean> map) {
+        for (int i = 1; i < num; i++) {
+            int j = num - i;
+            if (j != i && map.get(i) == null && map.get(j) == null) {
+                return true;
             }
         }
-        if (numNag < numPos) {
-            return numNag + numZero >= numPos - 1;
-        } else if (numPos  < numNag) {
-            return numPos + numZero >= numNag - 1;
-        } else {
-            return true;
+        return false;
+    }
+
+    public static int calNums(int[] arr) {
+        int count = 0;
+        Map<Integer, Boolean> map = new HashMap<>();
+        for (int num : arr) {
+            map.put(num, Boolean.TRUE);
         }
+        for (int num : arr) {
+            if (isSelect(num, map)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static void main(String[] args) {
@@ -39,11 +42,7 @@ public class TpcTest1 {
                 int num = scan.nextInt();
                 arr[j] = num;
             }
-            if (perfectSequence(arr)) {
-                System.out.print("Yes");
-            } else {
-                System.out.print("No");
-            }
+            System.out.print(calNums(arr));
             if (i < groups - 1) {
                 System.out.print("\n");
             }
