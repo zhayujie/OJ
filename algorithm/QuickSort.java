@@ -11,11 +11,33 @@ public class QuickSort {
         sort(a, p+1, hi);
     }
 
-    private int partition(int[] a, int lo, int hi) {
+    private int partition(int[] nums, int lo, int hi) {
+        int v = nums[lo];
+        int i = lo, j = hi+1;
+
+        while (true) {
+            while (nums[++i] < v) {
+                if (i == hi) {
+                    break;
+                }
+            }
+            while (nums[--j] > v) {
+            }
+            if (i >= j) {
+                break;
+            }
+            swap(nums, i, j);
+        }
+        swap(nums, lo, j);
+        return j;
+    }
+
+
+    private int partitionError(int[] a, int lo, int hi) {
         int v = a[lo];
         int i = lo + 1, j = hi;
 
-        while (i <= j) {                    // 2.注意是 <= 不是 < 否则对{1,2}的数组无效
+        while (i <= j) {                    // 2.注意是 <= 不是 < 否则对{1,2}的数组无效，写成while(true)也行
             while (a[i] < v) {              // 3.不能写成 a[i--]
                 i++;
                 if (i >= hi)     break;     // 4.越界退出
@@ -23,9 +45,10 @@ public class QuickSort {
             while (a[j] > v) {
                 j--;
             }
-            if (i < j) {                    // 5.注意 i<j 才交换
-                swap(a, i, j);
+            if (i >= j) {                    // 5.注意 i>=j 要退出，否则死循环
+                break;
             }
+            swap(a, i, j);
         }
         swap(a, lo, j);
 
@@ -39,7 +62,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int a[] = {1, 3, 6};
+        int a[] = {5,2,3,1};
         new QuickSort().sort(a);
 
         for (int v: a) {
