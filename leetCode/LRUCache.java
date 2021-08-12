@@ -6,70 +6,70 @@ import java.util.*;
  * @date 2021/8/5
  */
 public class LRUCache {
-    private Entry head;
-    private Map<Integer, Entry> map;
     private int capacity;
+    private Map<Integer, Node> cache;
+    private Node head;
 
-    public class Entry {
-        public Integer key;
-        public Integer val;
-        public Entry prev;
-        public Entry next;
+    class Node {
+        int key;
+        int val;
+        Node prev;
+        Node next;
     }
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
-        this.map = new HashMap<>(capacity);
+        this.cache = new HashMap<>(capacity);
+        this.head = new Node();
         // 虚拟头节点
-        head = new Entry();
         head.prev = head;
         head.next = head;
     }
 
     public int get(int key) {
-        Entry val = map.get(key);
-        if (val == null) {
+        Node v = cache.get(key);
+        if (v == null) {
             return -1;
         }
-        moveToFront(val);
-        return val.val;
+        remove(v);
+        addToHead(v);
+        return v.val;
     }
 
     public void put(int key, int value) {
-        Entry val = map.get(key);
-        if (val != null) {
-            val.val = value;
-            moveToFront(val);
+        Node v = cache.get(key);
+        if (v != null) {
+            v.val = value;
+            remove(v);
+            addToHead(v);
+            cache.put(key, v);
             return;
         }
-        Entry e = new Entry();
+        if (cache.size() == capacity) {
+            // 淘汰末尾的least recent used元素
+            // 注意要先从map移除，再从链表移除
+            cache.remove(head.prev.key);
+            remove(head.prev);
+        }
+        Node e = new Node();
         e.key = key;
         e.val = value;
-        if (map.size() == capacity) {
-            // 移除尾部 least recent used
-            Entry tail = head.prev;
-            Entry newTail = tail.prev;
-            newTail.next = head;
-            head.prev = newTail;
-            map.remove(tail.key);
-        }
-        map.put(key, e);
-
-        // 头部插入
-        e.next = head.next;
-        e.prev = head;
-        head.next.prev = e;
-        head.next = e;
+        addToHead(e);
+        cache.put(key, e);
     }
 
-    private void moveToFront(Entry val) {
-        // 将某个节点移动到头部
-        val.prev.next = val.next;
-        val.next.prev = val.prev;
-        val.prev = head;
-        val.next = head.next;
-        head.next.prev = val;
-        head.next = val;
+    private void addToHead(Node v) {
+        // 头部插入节点
+        v.next = head.next;
+        v.prev = head;
+        head.next.prev = v;
+        head.next = v;
+    }
+
+    private void remove(Node v) {
+        // 移除某个节点
+        v.prev.next = v.next;
+        v.next.prev = v.prev;
     }
 
 
