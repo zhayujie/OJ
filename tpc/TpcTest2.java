@@ -35,7 +35,7 @@ public class TpcTest2 {
             if (perfectSequence(arr)) {
                 System.out.print("Yes");
             } else {
-                System.out.print("No");
+                System.out.print("No021_new");
             }
             if (i < groups - 1) {
                 System.out.print("\n");

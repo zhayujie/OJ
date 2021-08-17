@@ -46,7 +46,6 @@ public int minSwaps(String s) {
 }
 
     public static void main(String[] args) {
-    LinkedList
         System.out.println(new Contest25303().minSwaps("]]][[["));
     }
 }

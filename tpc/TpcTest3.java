@@ -49,7 +49,7 @@ public class TpcTest3 {
             if (calNums(arr)) {
                 System.out.print("Yes");
             } else {
-                System.out.print("No");
+                System.out.print("No021_new");
             }
             if (i < groups - 1) {
                 System.out.print("\n");

@@ -39,7 +39,7 @@ public class TpcTest5 {
             if (canWin(arr1, arr2, rank)) {
                 System.out.print("Yes");
             } else {
-                System.out.print("No");
+                System.out.print("No021_new");
             }
 //            if (i < groups - 1) {
                 System.out.print("\n");
